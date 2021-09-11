@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from "react";
-import { Button, Comment, Tooltip, Avatar, Row, Col } from "antd";
+import { Button, Card, Avatar, Row, Col } from "antd";
 
 import UserContext from "../contexts/UserContext";
 
@@ -10,6 +10,8 @@ export default function Dashboard() {
   const { setIsAuthenticated } = useContext(UserContext);
   const dispatch = useDispatch();
   const { list } = useSelector((state) => state.countries.countries);
+  const { Meta } = Card;
+  console.log(list);
 
   useEffect(() => {
     dispatch(getCountry());
@@ -26,22 +28,24 @@ export default function Dashboard() {
           Logout
         </Button>
         <Row>
-          <Col
-            xl={7}
-            style={{
-              borderStyle: "solid",
-              marginLeft: "200px",
-              marginTop: "30px",
-            }}
-          >
-            {list.map((value) => {
-              <Comment
-                author={<a>{value.name}</a>}
-                avatar={<Avatar src={value.flag} alt="Han Solo" />}
-                content={value.region}
-              />;
-            })}
-          </Col>
+          {list.map((value) => {
+            return (
+              <Col
+                xl={4}
+                style={{
+                  marginTop: "30px",
+                  marginLeft: "160px",
+                }}
+              >
+                <Card
+                  style={{ width: 300 }}
+                  cover={<img alt="example" src={value.flag} />}
+                >
+                  <Meta title={value.name} description={value.region} />
+                </Card>
+              </Col>
+            );
+          })}
         </Row>
       </p>
     </div>

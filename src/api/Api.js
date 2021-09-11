@@ -5,7 +5,7 @@ let Api = axios.create({
   headers: {
     Accept: "application/json",
     "Content-Type": "application/json",
-    "access-control-allow-origin": "*",
+    //"access-control-allow-origin": "*",
     //"Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
   },
 });
